@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        window.FontAwesomeConfig = {
+          autoReplaceSvg: 'nest'
+        };
+      </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Content Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-secondary: #f8fafc;
+            --text-primary: #0f172a;
+            --border-color: #e2e8f0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: var(--text-primary);
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            padding: 8px 16px;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.06); transform: translateY(-4px); }
+        .card-image-wrapper {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+        }
+        .card-image-wrapper img, .card-image-wrapper AI-IMAGE {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .card:hover .card-image-wrapper img { transform: scale(1.05); }
+        .card-content {
+            padding: 16px;
+            flex: 1;
+        }
+        .card-footer {
+            padding: 12px 16px;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .social-btn:hover { color: var(--primary-color); }
+        .avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+        .avatar-sm { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .badge-video { background: #dbeafe; color: #1d4ed8; }
+        .badge-article { background: #dcfce7; color: #15803d; }
+        .badge-resource { background: #fef3c7; color: #b45309; }
+        .sidebar-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .nav-link {
+            position: relative;
+            padding: 0 12px;
+            color: #64748b;
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: var(--primary-color); }
+        .nav-link.active { color: var(--primary-color); font-weight: 600; }
+        .hero-section {
+            height: 420px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+            z-index: 1;
+        }
+        .hero-content { position: relative; z-index: 2; text-align: center; color: white; }
+        .tag {
+            display: inline-block;
+            background: var(--bg-secondary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #475569;
+            margin-right: 6px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tag:hover { background: #e2e8f0; }
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav style="height:72px; border-bottom:1px solid var(--border-color); display:flex; align-items:center; padding:0 48px; background:white; position:sticky; top:0; z-index:100;">
+        <div style="display:flex; align-items:center; gap:48px; flex:1;">
+            <div style="display:flex; align-items:center; gap:12px;">
+                <i class="fa-solid fa-mountain-sun" style="font-size:28px; color:var(--primary-color);"></i>
+                <div>
+                    <div style="font-size:22px; font-weight:700; color:var(--text-primary); line-height:1;">心之所向</div>
+                    <div style="font-size:12px; color:#64748b; margin-top:2px;">记录 · 创作 · 分享</div>
+                </div>
+            </div>
+            <div style="display:flex; gap:8px;">
+                <a href="#" class="nav-link active">首页</a>
+                <a href="#" class="nav-link">文章</a>
+                <a href="#" class="nav-link">视频</a>
+                <a href="#" class="nav-link">资源</a>
+                <a href="#" class="nav-link">关于我</a>
+            </div>
+        </div>
+        <div style="flex:1; max-width:400px; margin:0 24px; position:relative;">
+            <input type="text" placeholder="搜索文章、视频、资源..." style="width:100%; height:44px; border:1px solid var(--border-color); border-radius:22px; padding:0 16px 0 20px; font-size:14px; outline:none; background:#f1f5f9;">
+            <i class="fa-solid fa-magnifying-glass" style="position:absolute; right:16px; top:14px; color:#94a3b8;"></i>
+        </div>
+        <div style="display:flex; align-items:center; gap:20px;">
+            <button style="background:none; border:none; cursor:pointer; color:#64748b; font-size:20px;"><i class="fa-regular fa-sun"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="height: 500px;">
+        <img class="absolute inset-0 w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_72b38b3ccd_b787bd15096dcbc5.png" alt="majestic mountain lake at golden hour sunset with a hiker on a cliff looking at the view, orange and" />
+        <div class="hero-overlay" style="background: linear-gradient(to right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%);"></div>
+        <div class="hero-content" style="text-align: left; left: 10%; position: absolute;">
+            <div style="font-size:56px; font-weight:800; line-height:1.2; letter-spacing: 2px;">
+                用文字记录思考<br>
+                用影像分享生活<br>
+                用资源连接更多可能
+            </div>
+            <p style="font-size:20px; margin-top:32px; opacity:0.9;">这是我的个人网站，分享我在创作、学习和生活中的点滴。</p>
+        </div>
+        <div style="position: absolute; right: 10%; bottom: 40px; color: white; text-align: right; z-index: 2;">
+            <div style="font-size: 24px; font-weight: 300; font-style: italic;">保持热爱<br>持续创造<br>— 未来可期</div>
+        </div>
+    </section>
+
+    <!-- Main Layout -->
+    <main style="max-width:1400px; margin:0 auto; padding:40px 24px; display:flex; gap:32px;">
+        <!-- Left Content Area -->
+        <div style="flex:1;">
+            <!-- Filters -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:32px;">
+                <div style="display:flex; gap:12px;">
+                    <button style="padding:10px 28px; border-radius:8px; background:var(--primary-color); color:white; border:none; font-size:15px; font-weight:500; cursor:pointer;">全部</button>
+                    <button style="padding:10px 28px; border-radius:8px; background:#f1f5f9; color:#64748b; border:none; font-size:15px; cursor:pointer;">最新</button>
+                    <button style="padding:10px 28px; border-radius:8px; background:#f1f5f9; color:#64748b; border:none; font-size:15px; cursor:pointer;">最热</button>
+                </div>
+                <div style="display:flex; gap:16px; color:#94a3b8; font-size:18px;">
+                    <i class="fa-solid fa-table-cells-large" style="color:var(--primary-color); cursor:pointer;"></i>
+                    <i class="fa-solid fa-ellipsis" style="cursor:pointer;"></i>
+                </div>
+            </div>
+
+            <!-- Content Grid (9-Grid Style like Moments) -->
+            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+                <!-- Card 1 -->
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_aed8cf5bae_1afb39d2bb3da3fb.png" alt="child painting with watercolors in a bright sunlit studio, close up focus, artistic lifestyle photog" />
+                        <span style="position:absolute; top:12px; right:12px; background:rgba(0,0,0,0.4); backdrop-filter:blur(4px); color:white; padding:4px 10px; border-radius:20px; font-size:11px;">
+                            <i class="fa-solid fa-play"></i>
+                        </span>
+                    </div>
+                    <div class="card-content">
+                        <h3 style="font-size:15px; font-weight:600; line-height:1.4; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">用镜头记录最美的风景：孩子眼中的纯粹世界</h3>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <img src="/avatars/avatar-3.jpg" class="avatar-sm">
+                            <span style="font-size:12px; color:#64748b;">卡卡</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div style="display:flex; gap:16px;">
+                            <span class="social-btn"><i class="fa-regular fa-heart"></i> 120</span>
+                            <span class="social-btn"><i class="fa-regular fa-comment"></i> 18</span>
+                        </div>
+                        <i class="fa-regular fa-share-from-square social-btn"></i>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_95e4b42ec8_d0e40f67c83ee5b7.png" alt="futuristic landscape with mountains and tech elements, cinematic concept art style" />
+                    </div>
+                    <div class="card-content">
+                        <h3 style="font-size:15px; font-weight:600; line-height:1.4; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">AI时代，个人成长的新机会与核心竞争力</h3>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <img src="/avatars/avatar-3.jpg" class="avatar-sm">
+                            <span style="font-size:12px; color:#64748b;">卡卡</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div style="display:flex; gap:16px;">
+                            <span class="social-btn"><i class="fa-regular fa-heart"></i> 85</span>
+                            <span class="social-btn"><i class="fa-regular fa-comment"></i> 12</span>
+                        </div>
+                        <i class="fa-regular fa-share-from-square social-btn"></i>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_4e603695e0_80ab7a571d79b631.png" alt="top view of an open notebook with neat handwriting and a pen on a wooden desk, soft morning light" />
+                    </div>
+                    <div class="card-content">
+                        <h3 style="font-size:15px; font-weight:600; line-height:1.4; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">高效学习的5个小习惯：如何更好地管理你的精力和时间</h3>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <img src="/avatars/avatar-3.jpg" class="avatar-sm">
+                            <span style="font-size:12px; color:#64748b;">卡卡</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div style="display:flex; gap:16px;">
+                            <span class="social-btn"><i class="fa-regular fa-heart"></i> 93</span>
+                            <span class="social-btn"><i class="fa-regular fa-comment"></i> 24</span>
+                        </div>
+                        <i class="fa-regular fa-share-from-square social-btn"></i>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_934c4597c5_97c547e8997cfcc5.png" alt="minimalist workspace with laptop and coffee, soft natural lighting" />
+                    </div>
+                    <div class="card-content">
+                        <h3 style="font-size:15px; font-weight:600; line-height:1.4; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">我的数字游民生活：在不同的城市寻找创作灵感</h3>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <img src="/avatars/avatar-3.jpg" class="avatar-sm">
+                            <span style="font-size:12px; color:#64748b;">卡卡</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div style="display:flex; gap:16px;">
+                            <span class="social-btn"><i class="fa-regular fa-heart"></i> 210</span>
+                            <span class="social-btn"><i class="fa-regular fa-comment"></i> 45</span>
+                        </div>
+                        <i class="fa-regular fa-share-from-square social-btn"></i>
+                    </div>
+                </article>
+
+                <!-- Card 5 -->
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_22421ce977_91b31e0a26371b19.png" alt="beautiful sunset over a quiet ocean with small waves" />
+                    </div>
+                    <div class="card-content">
+                        <h3 style="font-size:15px; font-weight:600; line-height:1.4; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">日落时分的思考：为什么我们需要慢下来去感受生活</h3>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <img src="/avatars/avatar-3.jpg" class="avatar-sm">
+                            <span style="font-size:12px; color:#64748b;">卡卡</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div style="display:flex; gap:16px;">
+                            <span class="social-btn"><i class="fa-regular fa-heart"></i> 320</span>
+                            <span class="social-btn"><i class="fa-regular fa-comment"></i> 56</span>
+                        </div>
+                        <i class="fa-regular fa-share-from-square social-btn"></i>
+                    </div>
+                </article>
+
+                <!-- Card 6 -->
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_a5cda2ec01_6c2a3715cc021612.png" alt="close up of a camera lens with beautiful bokeh background" />
+                    </div>
+                    <div class="card-content">
+                        <h3 style="font-size:15px; font-weight:600; line-height:1.4; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">摄影入门：如何利用光影讲好一个故事</h3>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <img src="/avatars/avatar-3.jpg" class="avatar-sm">
+                            <span style="font-size:12px; color:#64748b;">卡卡</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div style="display:flex; gap:16px;">
+                            <span class="social-btn"><i class="fa-regular fa-heart"></i> 156</span>
+                            <span class="social-btn"><i class="fa-regular fa-comment"></i> 22</span>
+                        </div>
+                        <i class="fa-regular fa-share-from-square social-btn"></i>
+                    </div>
+                </article>
+
+                <!-- Card 7 -->
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_02c76150be_846a0aff1251c88e.png" alt="neatly arranged stationery on a pastel colored desk" />
+                    </div>
+                    <div class="card-content">
+                        <h3 style="font-size:15px; font-weight:600; line-height:1.4; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">好物分享：提升办公幸福感的桌面清单</h3>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <img src="/avatars/avatar-3.jpg" class="avatar-sm">
+                            <span style="font-size:12px; color:#64748b;">卡卡</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div style="display:flex; gap:16px;">
+                            <span class="social-btn"><i class="fa-regular fa-heart"></i> 88</span>
+                            <span class="social-btn"><i class="fa-regular fa-comment"></i> 14</span>
+                        </div>
+                        <i class="fa-regular fa-share-from-square social-btn"></i>
+                    </div>
+                </article>
+
+                <!-- Card 8 -->
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_8de4aeb3af_304f84f1233e8e7c.png" alt="a cup of matcha latte with heart shape foam" />
+                    </div>
+                    <div class="card-content">
+                        <h3 style="font-size:15px; font-weight:600; line-height:1.4; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">午后时光：一杯抹茶拿铁带来的小确幸</h3>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <img src="/avatars/avatar-3.jpg" class="avatar-sm">
+                            <span style="font-size:12px; color:#64748b;">卡卡</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div style="display:flex; gap:16px;">
+                            <span class="social-btn"><i class="fa-regular fa-heart"></i> 124</span>
+                            <span class="social-btn"><i class="fa-regular fa-comment"></i> 30</span>
+                        </div>
+                        <i class="fa-regular fa-share-from-square social-btn"></i>
+                    </div>
+                </article>
+
+                <!-- Card 9 -->
+                <article class="card">
+                    <div class="card-image-wrapper">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_e82e964ce0_84f9070d67512b8c.png" alt="person hands coding on a high end laptop in a dark room with cool lighting" />
+                    </div>
+                    <div class="card-content">
+                        <h3 style="font-size:15px; font-weight:600; line-height:1.4; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">从0到1：我如何利用AI辅助完成这个设计项目</h3>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <img src="/avatars/avatar-3.jpg" class="avatar-sm">
+                            <span style="font-size:12px; color:#64748b;">卡卡</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div style="display:flex; gap:16px;">
+                            <span class="social-btn"><i class="fa-regular fa-heart"></i> 276</span>
+                            <span class="social-btn"><i class="fa-regular fa-comment"></i> 42</span>
+                        </div>
+                        <i class="fa-regular fa-share-from-square social-btn"></i>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <aside style="width:360px; flex-shrink:0;">
+            <!-- Profile Card -->
+            <div class="sidebar-card" style="background:white; border:1px solid var(--border-color); text-align: center;">
+                <div style="position:relative; display:inline-block; margin-bottom:16px;">
+                    <img src="/avatars/avatar-3.jpg" class="avatar" style="width:80px; height:80px; border:4px solid white; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+                    <div style="position:absolute; bottom:0; right:0; width:18px; height:18px; background:#22c55e; border:2px solid white; border-radius:50%;"></div>
+                </div>
+                <div style="font-size:20px; font-weight:700; margin-bottom:4px;">你好，我是卡卡</div>
+                <div style="font-size:14px; color:#64748b; margin-bottom:12px;">热爱创作 · 喜欢分享 · 追求成长</div>
+                <div style="font-size:12px; color:#2563eb; background:#eff6ff; display:inline-block; padding:4px 12px; border-radius:20px; margin-bottom:24px;">
+                    最近在探索：AI 创作与儿童阅读
+                </div>
+
+                <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; margin-bottom:24px;">
+                    <div style="text-align:center;">
+                        <i class="fa-solid fa-file-lines" style="color:#64748b; font-size:20px; margin-bottom:8px;"></i>
+                        <div style="font-size:12px; color:#94a3b8;">文章</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <i class="fa-solid fa-circle-play" style="color:#64748b; font-size:20px; margin-bottom:8px;"></i>
+                        <div style="font-size:12px; color:#94a3b8;">视频</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <i class="fa-solid fa-cloud-arrow-down" style="color:#64748b; font-size:20px; margin-bottom:8px;"></i>
+                        <div style="font-size:12px; color:#94a3b8;">资源</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <i class="fa-solid fa-users" style="color:#64748b; font-size:20px; margin-bottom:8px;"></i>
+                        <div style="font-size:12px; color:#94a3b8;">粉丝</div>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:12px;">
+                    <button class="btn-primary" style="flex:1; justify-content:center; height:44px; font-weight:600;"><i class="fa-solid fa-star"></i> 关注我</button>
+                    <button style="flex:1; height:44px; border:1px solid var(--primary-color); color:var(--primary-color); border-radius:8px; background:white; font-weight:600; cursor:pointer;"><i class="fa-regular fa-envelope"></i> 联系我</button>
+                </div>
+            </div>
+
+            <!-- 本周精选 -->
+            <div class="sidebar-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <h4 style="font-size:16px; font-weight:700; display:flex; align-items:center; gap:8px;">
+                        <i class="fa-solid fa-compass" style="color:#2563eb;"></i> 本周精选
+                    </h4>
+                    <a href="#" style="font-size:13px; color:#94a3b8;">更多 <i class="fa-solid fa-chevron-right" style="font-size:10px;"></i></a>
+                </div>
+                <div style="display:flex; gap:16px;">
+                    <div style="position:relative; width:120px; height:80px; flex-shrink:0;">
+                        <img class="w-full h-full rounded-lg object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_2447d3accc_6ced1018b8777899.png" alt="vibrant digital art of mountains and sky" />
+                        <span style="position:absolute; top:4px; left:4px; background:rgba(251,191,36,0.9); color:white; font-size:10px; padding:1px 4px; border-radius:3px;">精选</span>
+                    </div>
+                    <div>
+                        <div style="font-size:14px; font-weight:600; line-height:1.4; margin-bottom:4px;">AI赋能儿童阅读：从绘本到智能匹配的探索</div>
+                        <div style="font-size:12px; color:#94a3b8;">分享我们在儿童绘本匹配领域的一些思考与实践。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 最近受欢迎 -->
+            <div class="sidebar-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <h4 style="font-size:16px; font-weight:700; display:flex; align-items:center; gap:8px;">
+                        <i class="fa-solid fa-fire" style="color:#f97316;"></i> 最近受欢迎
+                    </h4>
+                    <span style="font-size:12px; color:#94a3b8;">近7天 · 按浏览量排序</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:16px;">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span style="font-weight:700; color:#f97316; font-size:16px; width:16px;">1</span>
+                        <div style="flex:1; font-size:14px; font-weight:500;">AI时代，个人成长的新机会</div>
+                        <span style="font-size:12px; color:#94a3b8;"><i class="fa-regular fa-eye"></i> 8.6k</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span style="font-weight:700; color:#fb923c; font-size:16px; width:16px;">2</span>
+                        <div style="flex:1; font-size:14px; font-weight:500;">我的创作工具分享</div>
+                        <span style="font-size:12px; color:#94a3b8;"><i class="fa-regular fa-eye"></i> 4.2k</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span style="font-weight:700; color:#fdba74; font-size:16px; width:16px;">3</span>
+                        <div style="flex:1; font-size:14px; font-weight:500;">如何制作高质量视频</div>
+                        <span style="font-size:12px; color:#94a3b8;"><i class="fa-regular fa-eye"></i> 3.9k</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span style="font-weight:700; color:#94a3b8; font-size:16px; width:16px;">4</span>
+                        <div style="flex:1; font-size:14px; font-weight:500;">高效学习的5个小习惯</div>
+                        <span style="font-size:12px; color:#94a3b8;"><i class="fa-regular fa-eye"></i> 3.1k</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span style="font-weight:700; color:#94a3b8; font-size:16px; width:16px;">5</span>
+                        <div style="flex:1; font-size:14px; font-weight:500;">生活中的小确幸</div>
+                        <span style="font-size:12px; color:#94a3b8;"><i class="fa-regular fa-eye"></i> 2.7k</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 最近在探索 -->
+            <div class="sidebar-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <h4 style="font-size:16px; font-weight:700; display:flex; align-items:center; gap:8px;">
+                        <i class="fa-solid fa-compass" style="color:#2563eb;"></i> 最近在探索
+                    </h4>
+                    <a href="#" style="font-size:13px; color:#94a3b8;">更多 <i class="fa-solid fa-chevron-right" style="font-size:10px;"></i></a>
+                </div>
+                <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                    <span style="padding:6px 16px; background:#f1f5f9; border-radius:20px; font-size:13px; color:#475569;">AI 创作</span>
+                    <span style="padding:6px 16px; background:#f1f5f9; border-radius:20px; font-size:13px; color:#475569;">影像记录</span>
+                    <span style="padding:6px 16px; background:#f1f5f9; border-radius:20px; font-size:13px; color:#475569;">阅读</span>
+                    <span style="padding:6px 16px; background:#f1f5f9; border-radius:20px; font-size:13px; color:#475569;">效率工具</span>
+                    <span style="padding:6px 16px; background:#f1f5f9; border-radius:20px; font-size:13px; color:#475569;">生活观察</span>
+                    <span style="padding:6px 16px; background:#f1f5f9; border-radius:20px; font-size:13px; color:#475569;">亲子教育</span>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="sidebar-card" style="background:#f8fafc; border:1px dashed #cbd5e1;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                    <i class="fa-solid fa-envelope-open-text" style="color:#2563eb; font-size:20px;"></i>
+                    <div style="font-size:15px; font-weight:700;">与我一起，发现更多美好</div>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-bottom:16px;">订阅更新，获取最新创作与资源</p>
+                <div style="display:flex; gap:8px;">
+                    <input type="email" placeholder="输入你的邮箱" style="flex:1; height:40px; border:1px solid var(--border-color); border-radius:8px; padding:0 12px; font-size:14px; outline:none;">
+                    <button class="btn-primary" style="padding:0 20px;">订阅</button>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background:#1e293b; color:white; padding:60px 0 30px;">
+        <div style="max-width:1400px; margin:0 auto; padding:0 24px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:40px;">
+                <div>
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                        <i class="fa-solid fa-mountain-sun" style="font-size:28px; color:#60a5fa;"></i>
+                        <span style="font-size:24px; font-weight:700;">心之所向</span>
+                    </div>
+                    <div style="font-size:14px; color:#94a3b8;">记录 · 创作 · 分享</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size:14px; color:#94a3b8; margin-bottom:20px;">© 2025 心之所向. All rights reserved.</div>
+                    <div style="display:flex; gap:24px; justify-content:center;">
+                        <a href="#" style="color:#94a3b8; font-size:24px;"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" style="color:#94a3b8; font-size:24px;"><i class="fa-brands fa-bilibili"></i></a>
+                        <a href="#" style="color:#94a3b8; font-size:24px;"><i class="fa-brands fa-weixin"></i></a>
+                        <a href="#" style="color:#94a3b8; font-size:24px;"><i class="fa-regular fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size:20px; font-weight:300; font-style:italic; color:#60a5fa;">与更好的自己相遇</div>
+                </div>
+            </div>
+            <div style="border-top:1px solid #334155; padding-top:20px; text-align:center; font-size:12px; color:#475569;">
+                本网站由 AI 辅助构建 | 持续学习，持续输出
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
