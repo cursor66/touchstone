@@ -14,7 +14,7 @@ const posts = [
 const image = (id: string) => `https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_${id}.png`;
 
 function Header() {
-  return <header className="topbar"><Link className="brand" href="/"><span className="brand-mark">⌁</span><span><strong>心之所向</strong><small>记录 · 创作 · 分享</small></span></Link><nav className="main-nav"><Link className="active" href="/">首页</Link><a href="#articles">文章</a><a href="#articles">视频</a><a href="#articles">资源</a><a href="#about">关于我</a></nav><label className="search"><span>⌕</span><input aria-label="搜索" placeholder="搜索文章、视频、资源..." /></label><button className="icon-button" aria-label="切换主题">☼</button></header>;
+  return <header className="topbar"><Link className="brand" href="/"><span className="brand-mark">⌁</span><span><strong>心之所向</strong><small>记录 · 创作 · 分享</small></span></Link><nav className="main-nav"><Link className="active" href="/">首页</Link><Link href="/articles">文章</Link><Link href="/videos">视频</Link><Link href="/resources">资源</Link><Link href="/about">关于我</Link></nav><label className="search"><span>⌕</span><input aria-label="搜索" placeholder="搜索文章、视频、资源..." /></label><button className="icon-button" aria-label="切换主题">☼</button></header>;
 }
 function Card({ post, index }: { post: string[]; index: number }) {
   return <article className="post-card"><a className="post-image" href="#articles"><img src={image(post[1])} alt="创作灵感与生活记录" />{index === 0 && <span className="play-mark">▶</span>}</a><div className="post-body"><h3>{post[0]}</h3><div className="author"><span className="avatar">卡</span><span>卡卡</span><span className="post-date">10月{18-index}日</span></div></div><footer className="post-footer"><span>♡ {post[2]}</span><span>◷ {post[3]}</span><span className="share">↗</span></footer></article>;
